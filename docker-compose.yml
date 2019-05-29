@@ -1,0 +1,19 @@
+version: '3'
+services:
+  nginx:
+    image: 'nginx:latest'
+    container_name: quickstart-sapui5-nginx
+    volumes:
+      - './.docker/nginx/conf:/etc/nginx/conf.d'
+      - './.docker/nginx/logs:/var/log/nginx'
+      - './webapp:/var/www/app/'
+    environment:
+      - TZ=Europe/Moscow
+    networks:
+      development:
+        aliases:
+          - quickstart.sapui5.test
+networks:
+  development:
+    external:
+      name: develope
